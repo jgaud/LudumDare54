@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy3pu34rky8qd"]
+[gd_scene load_steps=3 format=3 uid="uid://dy3pu34rky8qd"]
+
+[ext_resource type="Script" path="res://scripts/fridge_shelf.gd" id="1_52lpx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_542nh"]
-size = Vector2(190, 40)
+size = Vector2(170, 40)
 
 [node name="FridgeShelf" type="Node2D"]
+script = ExtResource("1_52lpx")
 
 [node name="Area2D" type="Area2D" parent="."]
 
