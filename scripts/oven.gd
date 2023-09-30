@@ -55,4 +55,5 @@ func _on_door_input_event(viewport, event, shape_idx):
 func _on_cooking_timer_timeout():
 	for shelf in $Shelves.get_children():
 		if(shelf.containedItem != null):
-			shelf.containedItem.remaining_cooking -= current_temp
+			if(round(current_temp) >= shelf.containedItem.cook_temp):
+				shelf.containedItem.remaining_cooking -= current_temp

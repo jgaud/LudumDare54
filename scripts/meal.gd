@@ -5,14 +5,19 @@ signal dropped(area)
 
 @onready var initial_position: Vector2 = position
 @onready var _progress_bar = $TextureProgressBar
+@onready var _burning_progress_bar = $BurningProgressBar
 
 var dragged: bool
 var start_drag_mouse_pos
 
 var _progress: float = 0
+var _burning_progress: float = 0
 var cook_time: int
 var cook_temp: int
 var remaining_cooking: float
+var current_state: MealState = MealState.UNCOOKED
+
+enum MealState {UNCOOKED, COOKED, BURNED}
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,7 +27,7 @@ func _process(delta):
 		new_pos -= start_drag_mouse_pos
 		global_position = new_pos
 		
-	if(remaining_cooking != 0):
+	if(current_state == MealState.UNCOOKED and remaining_cooking > 0):
 		_progress = (1 - (remaining_cooking / (cook_temp * cook_time))) * 100
 
 		if(_progress_bar.value != _progress):
@@ -30,6 +35,25 @@ func _process(delta):
 				_progress_bar.visible = true
 			
 			_progress_bar.value = _progress
+			
+	elif(current_state == MealState.UNCOOKED and remaining_cooking <= 0):
+		current_state = MealState.COOKED
+	
+	elif(current_state == MealState.COOKED and remaining_cooking < 0):
+		#Meal is burning!!
+		_burning_progress = abs(remaining_cooking / (cook_temp * cook_time)) * 100
+		
+		if(_burning_progress_bar.value != _burning_progress):
+			if(_progress_bar.visible):
+				_progress_bar.visible = false
+				_burning_progress_bar.visible = true
+				
+			_burning_progress_bar.value = _burning_progress
+		
+		if(_burning_progress >= 100):
+			current_state = MealState.BURNED
+			_burning_progress_bar.visible = false
+			#TODO: Display burned sprite
 
 func _set_cooking_params(time, temp):
 	cook_time = time

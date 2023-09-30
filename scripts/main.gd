@@ -14,6 +14,7 @@ func _ready():
 	
 	var meal2 = meal_scene.instantiate()
 	meal2.dropped.connect(_on_meal_dropped)
+	meal2._set_cooking_params(10, 50)
 	$Fridge/FridgeShelf2.add_child(meal2)
 
 func _on_meal_dropped(area):
