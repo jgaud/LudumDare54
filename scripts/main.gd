@@ -27,3 +27,7 @@ func _on_meal_dropped(area):
 				break
 	
 	meal.position = meal.initial_position
+
+
+func _on_h_scroll_bar_value_changed(value):
+	%AimedDegrees.text = str(round(value)) + "°F"

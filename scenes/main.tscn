@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dod0ypgd1b5ak"]
+[gd_scene load_steps=9 format=3 uid="uid://dod0ypgd1b5ak"]
 
 [ext_resource type="PackedScene" uid="uid://b4j8v4of8cwiy" path="res://scenes/fridge_shelf.tscn" id="1_hqi4f"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_yie1w"]
 [ext_resource type="PackedScene" uid="uid://cxtm7j1rj643m" path="res://scenes/meal.tscn" id="2_7m418"]
+[ext_resource type="Texture2D" uid="uid://bxt251uegemlg" path="res://art/oven_closed.png" id="3_c3gt5"]
 [ext_resource type="PackedScene" uid="uid://nihuaqcfd8n1" path="res://scenes/oven_shelf.tscn" id="3_fjx4h"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lns80"]
-size = Vector2(200, 200)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_253r4"]
 size = Vector2(250, 200)
@@ -14,22 +12,25 @@ size = Vector2(250, 200)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ajm2q"]
 size = Vector2(190, 326)
 
+[sub_resource type="LabelSettings" id="LabelSettings_2n24a"]
+font_size = 35
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_yie1w")
 meal_scene = ExtResource("2_7m418")
 
 [node name="Oven" type="Node2D" parent="."]
-position = Vector2(100, 300)
+position = Vector2(100, 250)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Oven"]
-texture = SubResource("PlaceholderTexture2D_lns80")
+texture = ExtResource("3_c3gt5")
 
 [node name="OvenShelf" parent="Oven" instance=ExtResource("3_fjx4h")]
-position = Vector2(0, -22)
+position = Vector2(19, 40)
 
 [node name="OvenShelf2" parent="Oven" instance=ExtResource("3_fjx4h")]
-position = Vector2(0, 50)
+position = Vector2(17, 111)
 
 [node name="Counter" type="Node2D" parent="."]
 position = Vector2(325, 300)
@@ -51,5 +52,46 @@ position = Vector2(0, -130)
 [node name="FridgeShelf2" parent="Fridge" instance=ExtResource("1_hqi4f")]
 position = Vector2(0, -80)
 
-[node name="Node" type="Node2D" parent="."]
-position = Vector2(-341, 269)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HScrollBar" type="HScrollBar" parent="CanvasLayer/MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 500.0
+step = 50.0
+
+[node name="AimedDegrees" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0°F"
+label_settings = SubResource("LabelSettings_2n24a")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[connection signal="value_changed" from="CanvasLayer/MarginContainer/HBoxContainer/HBoxContainer/HScrollBar" to="." method="_on_h_scroll_bar_value_changed"]
