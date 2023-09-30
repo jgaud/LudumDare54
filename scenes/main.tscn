@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://dod0ypgd1b5ak"]
+
+[ext_resource type="PackedScene" uid="uid://dy3pu34rky8qd" path="res://scenes/fridge_shelf.tscn" id="1_hqi4f"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lns80"]
+size = Vector2(200, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnstr"]
+size = Vector2(180, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvugw"]
+size = Vector2(180, 60)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_253r4"]
+size = Vector2(250, 200)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ajm2q"]
+size = Vector2(190, 326)
+
+[node name="Main" type="Node2D"]
+
+[node name="Oven" type="Node2D" parent="."]
+position = Vector2(100, 300)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Oven"]
+texture = SubResource("PlaceholderTexture2D_lns80")
+
+[node name="TopShelf" type="Area2D" parent="Oven"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oven/TopShelf"]
+position = Vector2(0, -30)
+shape = SubResource("RectangleShape2D_jnstr")
+
+[node name="BottomShelf" type="Area2D" parent="Oven"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Oven/BottomShelf"]
+position = Vector2(1, 40)
+shape = SubResource("RectangleShape2D_uvugw")
+
+[node name="Counter" type="Node2D" parent="."]
+position = Vector2(325, 300)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Counter"]
+texture = SubResource("PlaceholderTexture2D_253r4")
+
+[node name="Fridge" type="Node2D" parent="."]
+position = Vector2(545, 238)
+
+[node name="Sprite2D" type="Sprite2D" parent="Fridge"]
+texture = SubResource("PlaceholderTexture2D_ajm2q")
+metadata/_edit_group_ = true
+
+[node name="FridgeShelf" parent="Fridge" instance=ExtResource("1_hqi4f")]
+position = Vector2(0, -130)
+
+[node name="FridgeShelf2" parent="Fridge" instance=ExtResource("1_hqi4f")]
+position = Vector2(0, -80)
