@@ -3,7 +3,7 @@ extends Node2D
 class_name GenericShelf
 
 var active: bool = true
-var containedItem: Node2D
+var containedItem: Meal
 
 func _ready():
 	child_entered_tree.connect(_on_child_entered_tree)

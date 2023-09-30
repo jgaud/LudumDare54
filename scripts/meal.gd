@@ -1,5 +1,6 @@
 extends Node2D
 
+class_name Meal
 
 signal dropped(area)
 
@@ -62,9 +63,9 @@ func _set_cooking_params(time, temp):
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if Input.is_action_just_pressed("click"):
+		if(Input.is_action_just_pressed("click") and get_parent().active):
 			dragged = true
 			start_drag_mouse_pos = get_local_mouse_position()
-		elif Input.is_action_just_released("click") and dragged:
+		elif(Input.is_action_just_released("click") and dragged):
 			dragged = false
 			dropped.emit($Area2D)

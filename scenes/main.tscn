@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dod0ypgd1b5ak"]
+[gd_scene load_steps=16 format=3 uid="uid://dod0ypgd1b5ak"]
 
 [ext_resource type="PackedScene" uid="uid://b4j8v4of8cwiy" path="res://scenes/fridge_shelf.tscn" id="1_hqi4f"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_yie1w"]
@@ -10,12 +10,14 @@
 [ext_resource type="Texture2D" uid="uid://c4tscctj77ux8" path="res://art/oven_closed_door.png" id="6_5i705"]
 [ext_resource type="Texture2D" uid="uid://drbmmdep5fa3x" path="res://art/counter.png" id="8_1syy4"]
 [ext_resource type="PackedScene" uid="uid://chdjgha8a4k5g" path="res://scenes/counter_shelf.tscn" id="9_rqxk7"]
+[ext_resource type="Texture2D" uid="uid://0q4phpel3qdh" path="res://art/garbage.png" id="11_k8f1y"]
+[ext_resource type="Script" path="res://scripts/garbage_shelf.gd" id="12_7cxfl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d1sk"]
 size = Vector2(168, 146)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ajm2q"]
-size = Vector2(190, 326)
+size = Vector2(191, 326)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2n24a"]
 font_size = 35
@@ -103,7 +105,7 @@ position = Vector2(46, -63)
 
 [node name="Fridge" type="Node2D" parent="."]
 z_index = 1
-position = Vector2(545, 238)
+position = Vector2(545, 237)
 
 [node name="Sprite2D" type="Sprite2D" parent="Fridge"]
 texture = SubResource("PlaceholderTexture2D_ajm2q")
@@ -115,9 +117,23 @@ position = Vector2(0, -130)
 [node name="FridgeShelf2" parent="Fridge" instance=ExtResource("1_hqi4f")]
 position = Vector2(0, -80)
 
+[node name="Garbage" type="Node2D" parent="."]
+position = Vector2(590, 440)
+
+[node name="Sprite2D" type="Sprite2D" parent="Garbage"]
+texture = ExtResource("11_k8f1y")
+
+[node name="GarbageShelf" type="Node2D" parent="Garbage"]
+script = ExtResource("12_7cxfl")
+
+[node name="Area2D" type="Area2D" parent="Garbage/GarbageShelf"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageShelf/Area2D"]
+polygon = PackedVector2Array(-51, -37, -13, -17, 50, -17, 11, -37)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+[node name="MarginContainerBottom" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -129,14 +145,14 @@ size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainerBottom"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainerBottom/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HScrollBar" type="HScrollBar" parent="CanvasLayer/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="HScrollBar" type="HScrollBar" parent="CanvasLayer/MarginContainerBottom/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -144,7 +160,7 @@ size_flags_vertical = 4
 max_value = 500.0
 step = 50.0
 
-[node name="AimedTemp" type="Label" parent="CanvasLayer/MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="AimedTemp" type="Label" parent="CanvasLayer/MarginContainerBottom/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -152,11 +168,16 @@ text = "0°F"
 label_settings = SubResource("LabelSettings_2n24a")
 horizontal_alignment = 1
 
-[node name="Control" type="Control" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="CanvasLayer/MarginContainerBottom/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 
+[node name="MarginContainerTop" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
 [connection signal="input_event" from="Oven/Door" to="Oven" method="_on_door_input_event"]
 [connection signal="timeout" from="Oven/CookingTimer" to="Oven" method="_on_cooking_timer_timeout"]
-[connection signal="value_changed" from="CanvasLayer/MarginContainer/HBoxContainer/HBoxContainer/HScrollBar" to="." method="_on_h_scroll_bar_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/MarginContainerBottom/HBoxContainer/HBoxContainer/HScrollBar" to="." method="_on_h_scroll_bar_value_changed"]
