@@ -30,6 +30,8 @@ z_index = 3
 position = Vector2(100, 250)
 script = ExtResource("3_52ygy")
 temp_change_speed = 15.0
+temp_opened_change_speed = 20.0
+temp_closed_change_speed = 5.0
 oven_opened_texture = ExtResource("4_xxskm")
 oven_opened_top_texture = ExtResource("6_5i705")
 oven_closed_texture = ExtResource("5_bflww")
@@ -45,10 +47,13 @@ texture = ExtResource("6_5i705")
 [node name="Shelves" type="Node2D" parent="Oven"]
 
 [node name="OvenShelf" parent="Oven/Shelves" instance=ExtResource("3_fjx4h")]
-position = Vector2(19, 40)
+position = Vector2(18, 25)
 
 [node name="OvenShelf2" parent="Oven/Shelves" instance=ExtResource("3_fjx4h")]
-position = Vector2(17, 111)
+position = Vector2(18, 55)
+
+[node name="OvenShelf3" parent="Oven/Shelves" instance=ExtResource("3_fjx4h")]
+position = Vector2(18, 90)
 
 [node name="Control" type="Control" parent="Oven"]
 layout_mode = 3
@@ -79,6 +84,9 @@ shape = SubResource("RectangleShape2D_3d1sk")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Oven/Door"]
 polygon = PackedVector2Array(-67, 136, -67, 149, 75, 218, 238, 218, 238, 207, 84, 136)
 disabled = true
+
+[node name="CookingTimer" type="Timer" parent="Oven"]
+autostart = true
 
 [node name="Counter" type="Node2D" parent="."]
 z_index = 2
@@ -145,4 +153,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 8
 
 [connection signal="input_event" from="Oven/Door" to="Oven" method="_on_door_input_event"]
+[connection signal="timeout" from="Oven/CookingTimer" to="Oven" method="_on_cooking_timer_timeout"]
 [connection signal="value_changed" from="CanvasLayer/MarginContainer/HBoxContainer/HBoxContainer/HScrollBar" to="." method="_on_h_scroll_bar_value_changed"]

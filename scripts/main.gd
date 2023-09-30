@@ -9,8 +9,7 @@ func _ready():
 	
 	var meal = meal_scene.instantiate()
 	meal.dropped.connect(_on_meal_dropped)
-	meal.cook_time = 120
-	meal.cook_temp = 350
+	meal._set_cooking_params(15, 350)
 	$Fridge/FridgeShelf.add_child(meal)
 	
 	var meal2 = meal_scene.instantiate()

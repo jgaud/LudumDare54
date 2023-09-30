@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxtm7j1rj643m"]
+[gd_scene load_steps=6 format=3 uid="uid://cxtm7j1rj643m"]
 
 [ext_resource type="Script" path="res://scripts/meal.gd" id="1_r71yg"]
 [ext_resource type="Texture2D" uid="uid://casgc68fg12bv" path="res://art/meals/meal_placeholder.png" id="2_2qp8r"]
+[ext_resource type="Texture2D" uid="uid://ctmibcgft0d8b" path="res://art/progress_circle_under.png" id="3_p6lb4"]
+[ext_resource type="Texture2D" uid="uid://b4mdajmkbpp0b" path="res://art/progress_circle_over.png" id="4_jjogw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uapva"]
 size = Vector2(125, 20)
@@ -17,5 +19,16 @@ shape = SubResource("RectangleShape2D_uapva")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_2qp8r")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
+z_index = 6
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 30.0
+offset_bottom = 30.0
+fill_mode = 4
+texture_under = ExtResource("3_p6lb4")
+texture_progress = ExtResource("4_jjogw")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
