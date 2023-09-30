@@ -2,7 +2,7 @@ extends Node2D
 
 class_name GenericShelf
 
-
+var active: bool = true
 var containedItem: Node2D
 
 func _ready():

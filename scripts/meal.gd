@@ -2,9 +2,13 @@ extends Node2D
 
 signal dropped(area)
 
+@onready var initial_position: Vector2 = position
+
 var dragged: bool
 var start_drag_mouse_pos
-@onready var initial_position: Vector2 = position
+var cook_time: int
+var cook_temp: int
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -20,7 +24,7 @@ func _process(delta):
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if Input.is_action_pressed("click"):
+		if Input.is_action_just_pressed("click"):
 			dragged = true
 			start_drag_mouse_pos = get_local_mouse_position()
 		elif Input.is_action_just_released("click") and dragged:
