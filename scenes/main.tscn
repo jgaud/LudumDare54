@@ -48,7 +48,7 @@ texture = ExtResource("6_5i705")
 [node name="Shelves" type="Node2D" parent="Oven"]
 
 [node name="OvenShelf" parent="Oven/Shelves" instance=ExtResource("3_fjx4h")]
-position = Vector2(18, 25)
+position = Vector2(18, 26)
 
 [node name="OvenShelf2" parent="Oven/Shelves" instance=ExtResource("3_fjx4h")]
 position = Vector2(18, 55)
@@ -133,6 +133,18 @@ polygon = PackedVector2Array(-51, -37, -13, -17, 50, -17, 11, -37)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="MarginContainerTop" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+
+[node name="Money" type="Label" parent="CanvasLayer/MarginContainerTop"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "0$"
+
 [node name="MarginContainerBottom" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 12
 anchor_top = 1.0
@@ -172,11 +184,6 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
-
-[node name="MarginContainerTop" type="MarginContainer" parent="CanvasLayer"]
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
 
 [connection signal="input_event" from="Oven/Door" to="Oven" method="_on_door_input_event"]
 [connection signal="timeout" from="Oven/CookingTimer" to="Oven" method="_on_cooking_timer_timeout"]

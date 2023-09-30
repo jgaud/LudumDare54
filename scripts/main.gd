@@ -3,6 +3,8 @@ extends Node2D
 @export var meal_scene: PackedScene
 @onready var oven_node: Node2D = $Oven
 
+var money: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#TODO: Change this section depending on the level
@@ -17,6 +19,10 @@ func _ready():
 	meal2._set_cooking_params(10, 50)
 	$Fridge/FridgeShelf2.add_child(meal2)
 
+func add_money(amount):
+	money += amount
+	%Money.text = str(money) + "$"
+	
 func _on_meal_dropped(area):
 	var meal = area.get_parent()
 	var parent = meal.get_parent()
