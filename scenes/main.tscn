@@ -8,12 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://doqxpdjy1x87j" path="res://art/oven_opened.png" id="4_xxskm"]
 [ext_resource type="Texture2D" uid="uid://ca8dmmej5dw11" path="res://art/oven_closed_base.png" id="5_bflww"]
 [ext_resource type="Texture2D" uid="uid://c4tscctj77ux8" path="res://art/oven_closed_door.png" id="6_5i705"]
+[ext_resource type="Texture2D" uid="uid://drbmmdep5fa3x" path="res://art/counter.png" id="8_1syy4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d1sk"]
 size = Vector2(168, 146)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_253r4"]
-size = Vector2(250, 200)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ajm2q"]
 size = Vector2(190, 326)
@@ -94,7 +92,8 @@ position = Vector2(325, 300)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Counter"]
-texture = SubResource("PlaceholderTexture2D_253r4")
+position = Vector2(-16, -50)
+texture = ExtResource("8_1syy4")
 
 [node name="Fridge" type="Node2D" parent="."]
 z_index = 1
