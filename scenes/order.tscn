@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq4pojijmb0i"]
+[gd_scene load_steps=5 format=3 uid="uid://cq4pojijmb0i"]
 
 [ext_resource type="Texture2D" uid="uid://chrvwjxh7dk22" path="res://art/order_background.png" id="1_i7ufs"]
 [ext_resource type="Script" path="res://scripts/order.gd" id="1_qef8e"]
-[ext_resource type="Texture2D" uid="uid://casgc68fg12bv" path="res://art/meals/meal_placeholder.png" id="2_4mwwl"]
 [ext_resource type="Texture2D" uid="uid://c18nqsj4aunqk" path="res://art/progress_bar_under.png" id="2_t2kln"]
 [ext_resource type="Texture2D" uid="uid://dlbwwya42ha20" path="res://art/progress_bar_over.png" id="3_l3jlx"]
 
@@ -26,7 +25,6 @@ texture_progress = ExtResource("3_l3jlx")
 [node name="MealSprite" type="Sprite2D" parent="."]
 position = Vector2(38, 43)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_4mwwl")
 
 [node name="OrderTimer" type="Timer" parent="."]
 autostart = true

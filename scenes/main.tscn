@@ -205,6 +205,7 @@ autostart = true
 
 [connection signal="input_event" from="Oven/Door" to="Oven" method="_on_door_input_event"]
 [connection signal="timeout" from="Oven/CookingTimer" to="Oven" method="_on_cooking_timer_timeout"]
-[connection signal="child_entered_tree" from="OrdersContainer" to="OrdersContainer" method="_on_child_entered_tree"]
+[connection signal="child_entered_tree" from="OrdersContainer" to="." method="compute_orders_pos"]
+[connection signal="child_exiting_tree" from="OrdersContainer" to="OrdersContainer" method="_on_child_exiting_tree"]
 [connection signal="value_changed" from="CanvasLayer/MarginContainerBottom/HBoxContainer/HBoxContainer/HScrollBar" to="." method="_on_h_scroll_bar_value_changed"]
 [connection signal="timeout" from="OrderTimer" to="OrdersContainer" method="_on_order_timer_timeout"]

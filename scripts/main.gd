@@ -8,10 +8,12 @@ var money: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	#TODO: Add meals properly with random values within the dictionary
-	add_meal(5, 50, $Fridge/FridgeShelf, Meal.MealType.PIZZA)
-	add_meal(1, 1, $Fridge/FridgeShelf2, Meal.MealType.PIZZA)
+	add_meal($Fridge/FridgeShelf, Meal.MealType.PIZZA)
+	add_meal($Fridge/FridgeShelf2, Meal.MealType.PIZZA, 0, 0)
 	
+	add_order(30, Meal.MealType.PIZZA)
 	for i in range(Global.starting_number_orders):
 		%OrdersContainer._on_order_timer_timeout()
 
@@ -19,11 +21,21 @@ func add_money(amount):
 	money += amount
 	%Money.text = str(money) + "$"
 	
-func add_meal(time, temp, shelf, meal_type):
+func add_meal(shelf, meal_type, time=null, temp=null):	
+	var random = RandomNumberGenerator.new()
+	random.randomize()
+	
+	if(time == null):
+		time = randi_range(round(Global.meals_info[meal_type].time_min), round(Global.meals_info[meal_type].time_max))
+		print(time)
+	if(temp == null):
+		temp = (random.randi_range(round(Global.meals_info[meal_type].temp_min/50), round(Global.meals_info[meal_type].temp_max/50))) * 50
+		
 	var meal = meal_scene.instantiate()
 	meal.dropped.connect(_on_meal_dropped)
 	meal._set_cooking_params(time, temp)
 	meal.meal_type = meal_type
+	meal.get_node("Sprite2D").texture = Global.meals_info[meal_type].texture
 	shelf.add_child(meal)
 	
 func add_order(time, meal_type: Meal.MealType):
@@ -33,12 +45,13 @@ func add_order(time, meal_type: Meal.MealType):
 	order.asked_meal = meal_type
 
 	%OrdersContainer.add_child(order)
-	
-func compute_orders_pos():
+
+func compute_orders_pos(node=null):
 	for order in %OrdersContainer.get_children():
-		var pos = Vector2((order.get_index() * 80) + 2, 0)
-		var tween = get_tree().create_tween()
-		tween.tween_property(order, "global_position", pos, 1).set_trans(Tween.TRANS_SPRING)
+		if(get_tree() != null):
+			var pos = Vector2((order.get_index() * 80) + 2, 0)
+			var tween = get_tree().create_tween()
+			tween.tween_property(order, "global_position", pos, 1).set_trans(Tween.TRANS_SPRING)
 	
 func _on_meal_dropped(area):
 	var meal = area.get_parent()
@@ -57,7 +70,9 @@ func _on_meal_dropped(area):
 				meal.set_global_position(area_overlapping.get_parent().global_position)
 				break
 	
-	meal.position = meal.initial_position
+	var tween = get_tree().create_tween()
+	tween.tween_property(meal, "position", meal.initial_position, 0.2)	
+	#meal.position = meal.initial_position
 
 
 func _on_h_scroll_bar_value_changed(value):

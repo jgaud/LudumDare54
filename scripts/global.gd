@@ -7,3 +7,22 @@ extends Node
 @export var money_per_order: int
 @export var order_every_second: int
 @export var starting_number_orders: int
+
+@onready var meals_info = {
+	Meal.MealType.LASAGNA: {
+		"label": "Lasagna",
+		"temp_min": 50,
+		"temp_max": 350,
+		"time_min": 10,
+		"time_max": 100,
+		"texture": load("res://art/meals/meal_placeholder.png")
+	},
+	Meal.MealType.PIZZA: {
+		"label": "Pizza",
+		"temp_min": 50,
+		"temp_max": 350,
+		"time_min": 10,
+		"time_max": 100,
+		"texture": load("res://art/meals/meal_placeholder.png")
+	}
+}

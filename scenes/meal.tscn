@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxtm7j1rj643m"]
+[gd_scene load_steps=8 format=3 uid="uid://cxtm7j1rj643m"]
 
 [ext_resource type="Script" path="res://scripts/meal.gd" id="1_r71yg"]
-[ext_resource type="Texture2D" uid="uid://casgc68fg12bv" path="res://art/meals/meal_placeholder.png" id="2_2qp8r"]
 [ext_resource type="Texture2D" uid="uid://s34tykdjfq3m" path="res://art/meals/burned_meal_placeholder.png" id="2_v6uck"]
 [ext_resource type="Texture2D" uid="uid://ctmibcgft0d8b" path="res://art/progress_circle_under.png" id="3_p6lb4"]
 [ext_resource type="Texture2D" uid="uid://b4mdajmkbpp0b" path="res://art/progress_circle_over.png" id="4_jjogw"]
@@ -22,7 +21,6 @@ burned_meal_texture = ExtResource("2_v6uck")
 shape = SubResource("RectangleShape2D_uapva")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_2qp8r")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 visible = false
