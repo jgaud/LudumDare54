@@ -11,4 +11,5 @@ tween_speed = 1.0
 money_gained_per_order = 10
 money_lost_per_order = 5
 order_every_second = 10
+meal_every_second = 5
 starting_number_orders = 2

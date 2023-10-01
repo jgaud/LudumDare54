@@ -12,3 +12,7 @@ script = ExtResource("1_52lpx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_542nh")
+
+[node name="CreateMealTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CreateMealTimer" to="." method="_on_create_meal_timer_timeout"]

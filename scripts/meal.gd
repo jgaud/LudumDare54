@@ -66,6 +66,9 @@ func _set_cooking_params(time, temp):
 	cook_time = time
 	cook_temp = temp
 	remaining_cooking = cook_time * cook_temp
+	
+	$Time.text = str(cook_time) + "s"
+	$Temperature.text = str(cook_temp) + "°F"
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:

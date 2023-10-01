@@ -9,21 +9,24 @@ var money: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	#TODO: Add meals properly with random values within the dictionary
 	add_meal($Fridge/FridgeShelf, Meal.MealType.PIZZA)
 	add_meal($Fridge/FridgeShelf2, Meal.MealType.PIZZA, 0, 0)
 	
-	add_order(30, Meal.MealType.PIZZA)
+	add_order(Meal.MealType.PIZZA, 30)
 	for i in range(Global.starting_number_orders):
-		%OrdersContainer._on_order_timer_timeout()
+		add_order()
 
 func add_money(amount):
 	money += amount
 	%Money.text = str(money) + "$"
 	
-func add_meal(shelf, meal_type, time=null, temp=null):	
+func add_meal(shelf, meal_type=null, time=null, temp=null):	
 	var random = RandomNumberGenerator.new()
 	random.randomize()
+	
+	if(meal_type == null):
+		var rand_index = randi() % len(Meal.MealType.values())
+		meal_type = Meal.MealType.values()[rand_index]
 	
 	if(time == null):
 		time = randi_range(round(Global.meals_info[meal_type].time_min), round(Global.meals_info[meal_type].time_max))
@@ -36,9 +39,20 @@ func add_meal(shelf, meal_type, time=null, temp=null):
 	meal._set_cooking_params(time, temp)
 	meal.meal_type = meal_type
 	meal.get_node("Sprite2D").texture = Global.meals_info[meal_type].texture
+	shelf.containedItem = meal
 	shelf.add_child(meal)
 	
-func add_order(time, meal_type: Meal.MealType):
+func add_order(meal_type=null, time=null):
+	var random = RandomNumberGenerator.new()
+	random.randomize()
+	
+	if(meal_type == null):
+		var rand_index = randi() % len(Meal.MealType.values())
+		meal_type = Meal.MealType.values()[rand_index]
+	
+	if(time == null):
+		time = randi_range(round(Global.meals_info[meal_type].time_max), round((Global.meals_info[meal_type].time_max)*0.10))
+	
 	var order = order_scene.instantiate()
 	order.order_initial_time = time
 	order.remaining_time = time

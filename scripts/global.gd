@@ -7,6 +7,7 @@ extends Node
 @export var money_gained_per_order: int
 @export var money_lost_per_order: int
 @export var order_every_second: int
+@export var meal_every_second: int
 @export var starting_number_orders: int
 
 @onready var meals_info = {
