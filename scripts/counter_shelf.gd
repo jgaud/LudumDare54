@@ -32,7 +32,6 @@ func _on_child_entered_tree(node):
 
 func _on_tween_meal_finished():
 	containedItem.queue_free()
-	#TODO: Increase money depending on the time left
 	get_parent().get_parent().add_money(Global.money_per_order * corresponding_order.remaining_time)
 	
 func _on_tween_order_finished():

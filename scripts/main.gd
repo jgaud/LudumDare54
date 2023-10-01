@@ -8,11 +8,12 @@ var money: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#TODO: Change this section depending on the level
+	#TODO: Add meals properly with random values within the dictionary
 	add_meal(5, 50, $Fridge/FridgeShelf, Meal.MealType.PIZZA)
 	add_meal(1, 1, $Fridge/FridgeShelf2, Meal.MealType.PIZZA)
-	create_order(40, Meal.MealType.PIZZA)
-	create_order(60, Meal.MealType.PIZZA)
+	
+	for i in range(Global.starting_number_orders):
+		%OrdersContainer._on_order_timer_timeout()
 
 func add_money(amount):
 	money += amount
@@ -25,7 +26,7 @@ func add_meal(time, temp, shelf, meal_type):
 	meal.meal_type = meal_type
 	shelf.add_child(meal)
 	
-func create_order(time, meal_type: Meal.MealType):
+func add_order(time, meal_type: Meal.MealType):
 	var order = order_scene.instantiate()
 	order.order_initial_time = time
 	order.remaining_time = time
@@ -36,7 +37,6 @@ func create_order(time, meal_type: Meal.MealType):
 func compute_orders_pos():
 	for order in %OrdersContainer.get_children():
 		var pos = Vector2((order.get_index() * 80) + 2, 0)
-		print(order.get_index())
 		var tween = get_tree().create_tween()
 		tween.tween_property(order, "global_position", pos, 1).set_trans(Tween.TRANS_SPRING)
 	
