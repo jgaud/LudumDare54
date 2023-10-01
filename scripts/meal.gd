@@ -4,6 +4,9 @@ class_name Meal
 
 signal dropped(area)
 
+enum MealState {UNCOOKED, COOKED, BURNED}
+enum MealType {LASAGNA, PIZZA}
+
 @onready var initial_position: Vector2 = position
 @onready var _progress_bar = $TextureProgressBar
 @onready var _burning_progress_bar = $BurningProgressBar
@@ -17,9 +20,7 @@ var cook_time: int
 var cook_temp: int
 var remaining_cooking: float
 var current_state: MealState = MealState.UNCOOKED
-
-enum MealState {UNCOOKED, COOKED, BURNED}
-
+var meal_type: MealType
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

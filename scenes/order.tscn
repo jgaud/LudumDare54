@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cq4pojijmb0i"]
+
+[ext_resource type="Texture2D" uid="uid://chrvwjxh7dk22" path="res://art/order_background.png" id="1_i7ufs"]
+[ext_resource type="Script" path="res://scripts/order.gd" id="1_qef8e"]
+[ext_resource type="Texture2D" uid="uid://casgc68fg12bv" path="res://art/meals/meal_placeholder.png" id="2_4mwwl"]
+[ext_resource type="Texture2D" uid="uid://c18nqsj4aunqk" path="res://art/progress_bar_under.png" id="2_t2kln"]
+[ext_resource type="Texture2D" uid="uid://dlbwwya42ha20" path="res://art/progress_bar_over.png" id="3_l3jlx"]
+
+[node name="Order" type="Control"]
+custom_minimum_size = Vector2(76, 70)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 75.0
+offset_bottom = 70.0
+script = ExtResource("1_qef8e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(38, 35)
+texture = ExtResource("1_i7ufs")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 132.0
+offset_bottom = 50.0
+scale = Vector2(0.5, 0.5)
+value = 100.0
+texture_under = ExtResource("2_t2kln")
+texture_progress = ExtResource("3_l3jlx")
+
+[node name="MealSprite" type="Sprite2D" parent="."]
+position = Vector2(38, 43)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_4mwwl")
+
+[node name="OrderTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="OrderTimer" to="." method="_on_order_timer_timeout"]

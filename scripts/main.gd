@@ -12,11 +12,13 @@ func _ready():
 	var meal = meal_scene.instantiate()
 	meal.dropped.connect(_on_meal_dropped)
 	meal._set_cooking_params(15, 350)
+	meal.meal_type = Meal.MealType.LASAGNA
 	$Fridge/FridgeShelf.add_child(meal)
 	
 	var meal2 = meal_scene.instantiate()
 	meal2.dropped.connect(_on_meal_dropped)
 	meal2._set_cooking_params(10, 50)
+	meal.meal_type = Meal.MealType.PIZZA
 	$Fridge/FridgeShelf2.add_child(meal2)
 
 func add_money(amount):

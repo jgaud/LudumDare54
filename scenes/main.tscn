@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dod0ypgd1b5ak"]
+[gd_scene load_steps=17 format=3 uid="uid://dod0ypgd1b5ak"]
 
 [ext_resource type="PackedScene" uid="uid://b4j8v4of8cwiy" path="res://scenes/fridge_shelf.tscn" id="1_hqi4f"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_yie1w"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://chdjgha8a4k5g" path="res://scenes/counter_shelf.tscn" id="9_rqxk7"]
 [ext_resource type="Texture2D" uid="uid://0q4phpel3qdh" path="res://art/garbage.png" id="11_k8f1y"]
 [ext_resource type="Script" path="res://scripts/garbage_shelf.gd" id="12_7cxfl"]
+[ext_resource type="PackedScene" uid="uid://cq4pojijmb0i" path="res://scenes/order.tscn" id="13_sern3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d1sk"]
 size = Vector2(168, 146)
@@ -137,13 +138,15 @@ polygon = PackedVector2Array(-51, -37, -13, -17, 50, -17, 11, -37)
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
 
-[node name="Money" type="Label" parent="CanvasLayer/MarginContainerTop"]
+[node name="OrdersContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainerTop"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 35
-text = "0$"
+
+[node name="Order" parent="CanvasLayer/MarginContainerTop/OrdersContainer" instance=ExtResource("13_sern3")]
+layout_mode = 2
 
 [node name="MarginContainerBottom" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 12
@@ -179,8 +182,22 @@ size_flags_horizontal = 3
 text = "0°F"
 label_settings = SubResource("LabelSettings_2n24a")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Control" type="Control" parent="CanvasLayer/MarginContainerBottom/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/MarginContainerBottom/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Money" type="Label" parent="CanvasLayer/MarginContainerBottom/HBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 35
+text = "0$"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/MarginContainerBottom/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
