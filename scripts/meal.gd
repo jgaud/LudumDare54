@@ -47,7 +47,7 @@ func _process(delta):
 	
 	elif(current_state == MealState.COOKED and remaining_cooking < 0):
 		#Meal is burning!!
-		_burning_progress = abs(remaining_cooking / (cook_temp * cook_time)) * 100
+		_burning_progress = abs(remaining_cooking / (cook_temp * cook_time)) * 100 * Global.burning_factor
 		
 		if(_burning_progress_bar.value != _burning_progress):
 			if(_progress_bar.visible):

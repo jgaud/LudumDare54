@@ -38,7 +38,7 @@ func _on_next_button_pressed():
 			%TutorialText.text = "Meals appear randomly at a fixed interval if nothing is in the fridge shelf. If you don't have what you need, get rid of the things you don't need to make space."
 		6:
 			$MenuBackground.texture = load("res://art/tutorial/tutorial6.png")
-			%TutorialText.text = "Once you've prepared an order, put it in the delivery zone. It'll be sent to the customer, and you'll make some money."
+			%TutorialText.text = "Once you've prepared an order, put it in the delivery zone. It'll be sent to the customer, and you'll make some money. You can also use this zone as temporary storage."
 		7:
 			$MenuBackground.texture = load("res://art/tutorial/tutorial7.png")
 			%TutorialText.text = "The game ends if your money goes negative or when you finish all the orders. Have fun!"

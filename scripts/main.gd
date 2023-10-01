@@ -10,10 +10,15 @@ var money: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	add_meal($Fridge/FridgeShelf, Meal.MealType.PIZZA)
-	add_meal($Fridge/FridgeShelf2, Meal.MealType.PIZZA, 0, 0)
 	
-	add_order(Meal.MealType.PIZZA, 60)
+	add_meal($Fridge/FridgeShelf)
+	add_meal($Fridge/FridgeShelf2)
+	add_meal($Fridge/FridgeShelf3)
+	add_meal($Fridge/FridgeShelf4)
+	add_meal($Fridge/FridgeShelf5)
+	add_meal($Fridge/FridgeShelf6)
+
+	
 	for i in range(Global.starting_number_orders):
 		add_order()
 
@@ -28,8 +33,8 @@ func check_game_over():
 		get_tree().paused = true
 		%EndGame.get_node("%ScoreLabel").text = "You ran out of money"
 		%EndGame.visible = true
-		
-	elif(%OrdersContainer.get_child_count() == 0):
+	
+	elif(%OrdersContainer.get_child_count() == 1):
 		#Win
 		get_tree().paused = true
 		%EndGame.get_node("%Label").text = "Congratulations, you won!"
@@ -66,7 +71,8 @@ func add_order(meal_type=null, time=null):
 		meal_type = Meal.MealType.values()[rand_index]
 	
 	if(time == null):
-		time = randi_range(round(Global.meals_info[meal_type].time_max), round((Global.meals_info[meal_type].time_max)*0.10))
+		time = Global.time_per_order
+		#randi_range(round(Global.meals_info[meal_type].time_max), round((Global.meals_info[meal_type].time_max)*0.10))
 	
 	var order = order_scene.instantiate()
 	order.order_initial_time = time

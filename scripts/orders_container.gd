@@ -9,6 +9,9 @@ func _ready():
 
 func _on_order_timer_timeout():
 	get_parent().add_order()
+	
+	if(%OrderTimer.wait_time > 5):
+		%OrderTimer.wait_time -= Global.wait_time_periodic_decrease
 
 
 func _on_child_exiting_tree(node):

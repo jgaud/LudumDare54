@@ -25,7 +25,7 @@ func _on_child_entered_tree(node):
 			tween2.tween_property(node.get_node("Sprite2D"), "modulate:a", 0, Global.tween_speed)
 			tween.connect("finished", _on_tween_meal_finished)
 			
-			corresponding_order.delete_order(Global.money_gained_per_order * corresponding_order.remaining_time)
+			corresponding_order.delete_order(round(Global.money_gained_per_order * (corresponding_order.remaining_time)/10))
 
 func _on_tween_meal_finished():
 	containedItem.queue_free()
