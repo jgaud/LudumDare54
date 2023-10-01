@@ -35,7 +35,8 @@ func _on_door_input_event(viewport, event, shape_idx):
 		elif is_opened:
 			$Sprite2D.texture = oven_closed_texture
 			$Sprite2D.position = Vector2(0,0)
-			
+		
+		get_parent().play_sound(Global.oven_door_sound)
 		$Sprite2DTop.visible = is_opened
 		
 		$Door/CollisionShape2D.disabled = not is_opened

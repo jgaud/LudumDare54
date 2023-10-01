@@ -3,16 +3,22 @@ extends Control
 var _current_tutorial_step = 0
 
 func _on_start_button_pressed():
+	_play_click()
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
+func _play_click():
+	%AudioStreamPlayer.stream = Global.click_sound
+	%AudioStreamPlayer.play()
 
 func _on_tutorial_button_pressed():
+	_play_click()
 	%HBoxContainer.visible = false
 	%TutorialText.visible = true
 	%NextButton.visible = true
 	_on_next_button_pressed()
 
 func _on_next_button_pressed():
+	_play_click()
 	_current_tutorial_step += 1
 	match _current_tutorial_step:
 		1:

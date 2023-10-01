@@ -1,5 +1,12 @@
 extends Node
 
+@export var click_sound: AudioStreamWAV
+@export var garbage_sound: AudioStreamWAV
+@export var oven_door_sound: AudioStreamWAV
+@export var order_completed_sound: AudioStreamWAV
+@export var order_failed_sound: AudioStreamWAV
+@export var meal_dropped_sound: AudioStreamWAV
+
 @export var temp_change_speed: float
 @export var temp_opened_change_speed: float
 @export var temp_closed_change_speed: float

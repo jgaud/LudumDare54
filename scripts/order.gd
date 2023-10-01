@@ -10,6 +10,7 @@ func _on_order_timer_timeout():
 		$TextureProgressBar.value = (remaining_time / order_initial_time) * 100
 	
 	elif(remaining_time <= 0):
+		get_parent().get_parent().play_sound(Global.order_failed_sound)
 		delete_order(-Global.money_lost_per_order)
 
 func _enter_tree():

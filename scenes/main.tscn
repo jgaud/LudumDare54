@@ -218,6 +218,10 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 autostart = true
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -10.0
+
 [connection signal="input_event" from="Oven/Door" to="Oven" method="_on_door_input_event"]
 [connection signal="timeout" from="Oven/CookingTimer" to="Oven" method="_on_cooking_timer_timeout"]
 [connection signal="child_entered_tree" from="OrdersContainer" to="." method="compute_orders_pos"]

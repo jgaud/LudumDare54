@@ -1,9 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctycrgepgyjx1"]
+[gd_scene load_steps=8 format=3 uid="uid://ctycrgepgyjx1"]
 
 [ext_resource type="Script" path="res://scripts/global.gd" id="1_8kruk"]
+[ext_resource type="AudioStream" uid="uid://ddi1q503lubm3" path="res://sounds/click.wav" id="2_dlq0i"]
+[ext_resource type="AudioStream" uid="uid://qop4r83575gg" path="res://sounds/garbage.wav" id="3_1aocb"]
+[ext_resource type="AudioStream" uid="uid://bqhwq6xtendyg" path="res://sounds/door.wav" id="4_dp2c4"]
+[ext_resource type="AudioStream" uid="uid://bohsi4ncpjqw0" path="res://sounds/order_completed.wav" id="5_fbc6t"]
+[ext_resource type="AudioStream" uid="uid://0pwa6bsnxkpf" path="res://sounds/order_failed.wav" id="6_dyk8s"]
+[ext_resource type="AudioStream" uid="uid://23l5d1ykn4ng" path="res://sounds/dropped_meal.wav" id="7_bcjgh"]
 
 [node name="Global" type="Node"]
 script = ExtResource("1_8kruk")
+click_sound = ExtResource("2_dlq0i")
+garbage_sound = ExtResource("3_1aocb")
+oven_door_sound = ExtResource("4_dp2c4")
+order_completed_sound = ExtResource("5_fbc6t")
+order_failed_sound = ExtResource("6_dyk8s")
+meal_dropped_sound = ExtResource("7_bcjgh")
 temp_change_speed = 15.0
 temp_opened_change_speed = 20.0
 temp_closed_change_speed = 5.0

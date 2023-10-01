@@ -14,6 +14,7 @@ func _on_child_entered_tree(node):
 				
 				
 		if(corresponding_order != null):
+			get_parent().get_parent().play_sound(Global.order_completed_sound)
 			node.get_node("BurningProgressBar").visible = false
 			node.get_node("Checkmark").visible = false
 			node.get_node("Temperature").visible = false

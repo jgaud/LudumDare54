@@ -3,6 +3,7 @@ extends Node2D
 @export var meal_scene: PackedScene
 @export var order_scene: PackedScene
 @onready var oven_node: Node2D = $Oven
+@onready var audio_stream_player = %AudioStreamPlayer
 
 var money: int = 0
 
@@ -12,7 +13,7 @@ func _ready():
 	add_meal($Fridge/FridgeShelf, Meal.MealType.PIZZA)
 	add_meal($Fridge/FridgeShelf2, Meal.MealType.PIZZA, 0, 0)
 	
-	add_order(Meal.MealType.PIZZA, 60)
+	add_order(Meal.MealType.PIZZA, 1)
 	for i in range(Global.starting_number_orders):
 		add_order()
 
@@ -100,9 +101,12 @@ func _on_meal_dropped(area):
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(meal, "position", meal.initial_position, 0.2)	
-	#meal.position = meal.initial_position
 
 
 func _on_h_scroll_bar_value_changed(value):
 	oven_node.aimed_temp = round(value)
 	%AimedTemp.text = str(oven_node.aimed_temp) + "°F"
+
+func play_sound(sound):
+	audio_stream_player.stream = sound
+	audio_stream_player.play()
