@@ -8,6 +8,7 @@ enum MealState {UNCOOKED, COOKED, BURNED}
 enum MealType {LASAGNA, PIZZA, PATE, STEW}
 
 @export var burned_meal_texture: Texture 
+@export var cross_texture: Texture
 
 @onready var initial_position: Vector2 = position
 @onready var _progress_bar = $TextureProgressBar
@@ -58,9 +59,11 @@ func _process(delta):
 		if(_burning_progress >= 100):
 			current_state = MealState.BURNED
 			_burning_progress_bar.visible = false
-			$Checkmark.visible = false
-			$Sprite2D.texture = burned_meal_texture
-			#TODO: Display correct burned sprite
+			$Checkmark.texture = cross_texture
+			$Temperature.visible = false
+			$Time.visible = false
+			$Sprite2D.texture = Global.meals_info[meal_type].texture_burned
+			
 
 func _set_cooking_params(time, temp):
 	cook_time = time

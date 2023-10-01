@@ -24,7 +24,8 @@ extends Node
 		"temp_max": 350,
 		"time_min": 10,
 		"time_max": 100,
-		"texture": load("res://art/meals/lasagna.png")
+		"texture": load("res://art/meals/lasagna.png"),
+		"texture_burned": load("res://art/meals/lasagna_burned.png")
 	},
 	Meal.MealType.PIZZA: {
 		"label": "Pizza",
@@ -32,7 +33,8 @@ extends Node
 		"temp_max": 350,
 		"time_min": 10,
 		"time_max": 100,
-		"texture": load("res://art/meals/pizza.png")
+		"texture": load("res://art/meals/pizza.png"),
+		"texture_burned": load("res://art/meals/pizza_burned.png")
 	},
 	Meal.MealType.PATE: {
 		"label": "Paté",
@@ -40,7 +42,8 @@ extends Node
 		"temp_max": 350,
 		"time_min": 10,
 		"time_max": 100,
-		"texture": load("res://art/meals/pate.png")
+		"texture": load("res://art/meals/pate.png"),
+		"texture_burned": load("res://art/meals/pate_burned.png")
 	},
 	Meal.MealType.STEW: {
 		"label": "Stew",
@@ -48,6 +51,7 @@ extends Node
 		"temp_max": 350,
 		"time_min": 10,
 		"time_max": 100,
-		"texture": load("res://art/meals/stew.png")
+		"texture": load("res://art/meals/stew.png"),
+		"texture_burned": load("res://art/meals/stew_burned.png")
 	}
 }

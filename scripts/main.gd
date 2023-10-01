@@ -13,7 +13,7 @@ func _ready():
 	add_meal($Fridge/FridgeShelf, Meal.MealType.PIZZA)
 	add_meal($Fridge/FridgeShelf2, Meal.MealType.PIZZA, 0, 0)
 	
-	add_order(Meal.MealType.PIZZA, 1)
+	add_order(Meal.MealType.PIZZA, 60)
 	for i in range(Global.starting_number_orders):
 		add_order()
 
