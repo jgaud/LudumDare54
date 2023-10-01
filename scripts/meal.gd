@@ -5,7 +5,7 @@ class_name Meal
 signal dropped(area)
 
 enum MealState {UNCOOKED, COOKED, BURNED}
-enum MealType {LASAGNA, PIZZA}
+enum MealType {LASAGNA, PIZZA, PATE, STEW}
 
 @export var burned_meal_texture: Texture 
 

@@ -23,9 +23,16 @@ func add_money(amount):
 	
 func check_game_over():
 	if(money < 0):
+		#Lose
 		get_tree().paused = true
-		%EndGame.get_node("%ScoreLabel").visible = false
-		#%EndGame.get_node("%ScoreLabel").text = "Score: " + str(money)
+		%EndGame.get_node("%ScoreLabel").text = "You ran out of money"
+		%EndGame.visible = true
+		
+	elif(%OrdersContainer.get_child_count() == 0):
+		#Win
+		get_tree().paused = true
+		%EndGame.get_node("%Label").text = "Congratulations, you won!"
+		%EndGame.get_node("%ScoreLabel").text = "Score: " + str(money)
 		%EndGame.visible = true
 	
 func add_meal(shelf, meal_type=null, time=null, temp=null):	

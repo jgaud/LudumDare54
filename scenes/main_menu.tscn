@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgtbee18j8hrf"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_2818e"]
+[ext_resource type="Texture2D" uid="uid://delk3akv8f86y" path="res://art/menu_background.png" id="2_wqv4m"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2818e")
+
+[node name="MenuBackground" type="Sprite2D" parent="."]
+texture = ExtResource("2_wqv4m")
+centered = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.5
+offset_right = 84.5
+offset_bottom = 113.0
+grow_horizontal = 2
+
+[node name="TutorialText" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "You can control the temperature of the oven. Plan ahead as it rises and decreases slowly. Keep in mind that the temperature drops a lot quicker if the door is opened!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="NextButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Next"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="TutorialButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Tutorial"
+
+[connection signal="pressed" from="VBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]

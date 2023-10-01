@@ -2,7 +2,7 @@ extends Node2D
 
 var order_initial_time: float = 10
 var remaining_time: float = 10
-var asked_meal: Meal.MealType
+var asked_meal: Meal.MealType = Meal.MealType.PIZZA
 
 func _on_order_timer_timeout():
 	if(remaining_time > 0):

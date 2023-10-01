@@ -112,22 +112,22 @@ texture = ExtResource("11_71vl6")
 metadata/_edit_group_ = true
 
 [node name="FridgeShelf" parent="Fridge" instance=ExtResource("1_hqi4f")]
-position = Vector2(12, -119)
+position = Vector2(12, -112)
 
 [node name="FridgeShelf2" parent="Fridge" instance=ExtResource("1_hqi4f")]
-position = Vector2(12, -76)
+position = Vector2(12, -69)
 
 [node name="FridgeShelf3" parent="Fridge" instance=ExtResource("1_hqi4f")]
-position = Vector2(12, -33)
+position = Vector2(12, -25)
 
 [node name="FridgeShelf4" parent="Fridge" instance=ExtResource("1_hqi4f")]
-position = Vector2(12, 10)
+position = Vector2(12, 18)
 
 [node name="FridgeShelf5" parent="Fridge" instance=ExtResource("1_hqi4f")]
-position = Vector2(12, 53)
+position = Vector2(12, 61)
 
 [node name="FridgeShelf6" parent="Fridge" instance=ExtResource("1_hqi4f")]
-position = Vector2(12, 96)
+position = Vector2(12, 105)
 
 [node name="Garbage" type="Node2D" parent="."]
 position = Vector2(590, 440)
