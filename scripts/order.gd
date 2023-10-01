@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 var order_initial_time: float = 10
 var remaining_time: float = 10

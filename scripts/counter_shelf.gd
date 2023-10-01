@@ -29,6 +29,8 @@ func _on_child_entered_tree(node):
 			tween3.tween_property(corresponding_order, "modulate:a", 0, tween_speed)
 			tween4.tween_property(corresponding_order, "position", Vector2.UP * 100, tween_speed).as_relative().from_current()
 			tween3.connect("finished", _on_tween_order_finished)
+			#var parent = corresponding_order.get_parent()
+			#parent.remove_child(corresponding_order)
 
 func _on_tween_meal_finished():
 	containedItem.queue_free()
@@ -36,4 +38,7 @@ func _on_tween_meal_finished():
 	get_parent().get_parent().add_money(10)
 	
 func _on_tween_order_finished():
+	var parent = corresponding_order.get_parent()
+	parent.remove_child(corresponding_order)
 	corresponding_order.queue_free()
+	get_tree().root.get_child(0).compute_orders_pos()

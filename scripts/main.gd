@@ -2,6 +2,7 @@ extends Node2D
 
 @export var meal_scene: PackedScene
 @export var order_scene: PackedScene
+@export var order_pos_function: Curve
 @onready var oven_node: Node2D = $Oven
 
 var money: int = 0
@@ -30,7 +31,15 @@ func create_order(time, meal_type: Meal.MealType):
 	order.order_initial_time = time
 	order.remaining_time = time
 	order.asked_meal = meal_type
+
 	%OrdersContainer.add_child(order)
+	
+func compute_orders_pos():
+	for order in %OrdersContainer.get_children():
+		var pos = Vector2(order.get_index() * 80, 0)
+		print(order.get_index())
+		var tween = get_tree().create_tween()
+		tween.tween_property(order, "global_position", pos, 1).set_trans(Tween.TRANS_SPRING)
 	
 func _on_meal_dropped(area):
 	var meal = area.get_parent()
