@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c4tscctj77ux8" path="res://art/oven_closed_door.png" id="6_5i705"]
 [ext_resource type="Texture2D" uid="uid://drbmmdep5fa3x" path="res://art/counter.png" id="8_1syy4"]
 [ext_resource type="PackedScene" uid="uid://chdjgha8a4k5g" path="res://scenes/counter_shelf.tscn" id="9_rqxk7"]
+[ext_resource type="Texture2D" uid="uid://dwvn2vhu3ur0j" path="res://art/fridge.png" id="11_71vl6"]
 [ext_resource type="Texture2D" uid="uid://0q4phpel3qdh" path="res://art/garbage.png" id="11_k8f1y"]
 [ext_resource type="Script" path="res://scripts/garbage_shelf.gd" id="12_7cxfl"]
 [ext_resource type="PackedScene" uid="uid://cq4pojijmb0i" path="res://scenes/order.tscn" id="13_sern3"]
@@ -18,9 +19,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d1sk"]
 size = Vector2(168, 146)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ajm2q"]
-size = Vector2(191, 326)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2n24a"]
 font_size = 35
@@ -107,17 +105,29 @@ position = Vector2(46, -63)
 
 [node name="Fridge" type="Node2D" parent="."]
 z_index = 1
-position = Vector2(545, 237)
+position = Vector2(531, 237)
 
 [node name="Sprite2D" type="Sprite2D" parent="Fridge"]
-texture = SubResource("PlaceholderTexture2D_ajm2q")
+texture = ExtResource("11_71vl6")
 metadata/_edit_group_ = true
 
 [node name="FridgeShelf" parent="Fridge" instance=ExtResource("1_hqi4f")]
-position = Vector2(0, -130)
+position = Vector2(12, -119)
 
 [node name="FridgeShelf2" parent="Fridge" instance=ExtResource("1_hqi4f")]
-position = Vector2(0, -80)
+position = Vector2(12, -76)
+
+[node name="FridgeShelf3" parent="Fridge" instance=ExtResource("1_hqi4f")]
+position = Vector2(12, -33)
+
+[node name="FridgeShelf4" parent="Fridge" instance=ExtResource("1_hqi4f")]
+position = Vector2(12, 10)
+
+[node name="FridgeShelf5" parent="Fridge" instance=ExtResource("1_hqi4f")]
+position = Vector2(12, 53)
+
+[node name="FridgeShelf6" parent="Fridge" instance=ExtResource("1_hqi4f")]
+position = Vector2(12, 96)
 
 [node name="Garbage" type="Node2D" parent="."]
 position = Vector2(590, 440)
