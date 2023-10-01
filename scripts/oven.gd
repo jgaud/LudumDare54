@@ -1,8 +1,5 @@
 extends Node2D
 
-@export var temp_change_speed: float
-@export var temp_opened_change_speed: float
-@export var temp_closed_change_speed: float
 @export var oven_opened_texture: Texture
 @export var oven_opened_top_texture: Texture
 @export var oven_closed_texture: Texture
@@ -14,14 +11,14 @@ var is_opened: bool = false
 func _process(delta):
 	#Normal temperature decay
 	if(is_opened and round(current_temp) > 0):
-		current_temp -= temp_opened_change_speed * delta
+		current_temp -= Global.temp_opened_change_speed * delta
 	elif(!is_opened and round(current_temp) > 0):
-		current_temp -= temp_closed_change_speed * delta
+		current_temp -= Global.temp_closed_change_speed * delta
 	
 	
 	if(aimed_temp > round(current_temp)):
 		#current_temp = lerpf(current_temp, aimed_temp, temp_change_speed * delta)
-		current_temp += temp_change_speed * delta
+		current_temp += Global.temp_change_speed * delta
 	
 	#Update the label
 	if(int(round(current_temp)) % 5 == 0):

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctycrgepgyjx1"]
+
+[ext_resource type="Script" path="res://scripts/global.gd" id="1_8kruk"]
+
+[node name="Global" type="Node"]
+script = ExtResource("1_8kruk")
+temp_change_speed = 15.0
+temp_opened_change_speed = 20.0
+temp_closed_change_speed = 5.0
+tween_speed = 1.0
+money_per_order = 10
