@@ -17,6 +17,7 @@ func _on_child_entered_tree(node):
 				
 		if(corresponding_order != null):
 			node.get_node("BurningProgressBar").visible = false
+			node.get_node("Checkmark").visible = false
 			var tween = get_tree().create_tween()
 			var tween2 = get_tree().create_tween()
 			tween.tween_property(node.get_node("Sprite2D"), "position", Vector2.UP * 25, Global.tween_speed).as_relative().from_current()

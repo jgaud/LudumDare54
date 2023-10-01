@@ -9,8 +9,8 @@ var money: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#TODO: Change this section depending on the level
-	add_meal(15, 350, $Fridge/FridgeShelf, Meal.MealType.LASAGNA)
-	add_meal(0, 0, $Fridge/FridgeShelf2, Meal.MealType.PIZZA)
+	add_meal(5, 50, $Fridge/FridgeShelf, Meal.MealType.PIZZA)
+	add_meal(1, 1, $Fridge/FridgeShelf2, Meal.MealType.PIZZA)
 	create_order(40, Meal.MealType.PIZZA)
 	create_order(60, Meal.MealType.PIZZA)
 

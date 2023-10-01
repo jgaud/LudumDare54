@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxtm7j1rj643m"]
+[gd_scene load_steps=9 format=3 uid="uid://cxtm7j1rj643m"]
 
 [ext_resource type="Script" path="res://scripts/meal.gd" id="1_r71yg"]
 [ext_resource type="Texture2D" uid="uid://casgc68fg12bv" path="res://art/meals/meal_placeholder.png" id="2_2qp8r"]
+[ext_resource type="Texture2D" uid="uid://s34tykdjfq3m" path="res://art/meals/burned_meal_placeholder.png" id="2_v6uck"]
 [ext_resource type="Texture2D" uid="uid://ctmibcgft0d8b" path="res://art/progress_circle_under.png" id="3_p6lb4"]
 [ext_resource type="Texture2D" uid="uid://b4mdajmkbpp0b" path="res://art/progress_circle_over.png" id="4_jjogw"]
 [ext_resource type="Texture2D" uid="uid://qhgosm2akjen" path="res://art/progress_circle_burning_over.png" id="5_w1v8p"]
+[ext_resource type="Texture2D" uid="uid://dq2ph0pysgjy0" path="res://art/checkmark.png" id="6_mg3nj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uapva"]
 size = Vector2(125, 20)
@@ -12,6 +14,7 @@ size = Vector2(125, 20)
 [node name="Meal" type="Node2D"]
 z_index = 4
 script = ExtResource("1_r71yg")
+burned_meal_texture = ExtResource("2_v6uck")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -42,5 +45,10 @@ offset_bottom = 30.0
 fill_mode = 4
 texture_under = ExtResource("3_p6lb4")
 texture_progress = ExtResource("5_w1v8p")
+
+[node name="Checkmark" type="Sprite2D" parent="."]
+visible = false
+z_index = 6
+texture = ExtResource("6_mg3nj")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

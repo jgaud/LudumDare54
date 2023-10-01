@@ -7,6 +7,8 @@ signal dropped(area)
 enum MealState {UNCOOKED, COOKED, BURNED}
 enum MealType {LASAGNA, PIZZA}
 
+@export var burned_meal_texture: Texture 
+
 @onready var initial_position: Vector2 = position
 @onready var _progress_bar = $TextureProgressBar
 @onready var _burning_progress_bar = $BurningProgressBar
@@ -40,6 +42,7 @@ func _process(delta):
 			
 	elif(current_state == MealState.UNCOOKED and remaining_cooking <= 0):
 		current_state = MealState.COOKED
+		$Checkmark.visible = true
 	
 	elif(current_state == MealState.COOKED and remaining_cooking < 0):
 		#Meal is burning!!
@@ -55,7 +58,9 @@ func _process(delta):
 		if(_burning_progress >= 100):
 			current_state = MealState.BURNED
 			_burning_progress_bar.visible = false
-			#TODO: Display burned sprite
+			$Checkmark.visible = false
+			$Sprite2D.texture = burned_meal_texture
+			#TODO: Display correct burned sprite
 
 func _set_cooking_params(time, temp):
 	cook_time = time
