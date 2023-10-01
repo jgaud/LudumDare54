@@ -8,7 +8,10 @@ func _on_order_timer_timeout():
 	if(remaining_time > 0):
 		remaining_time -= 1
 		$TextureProgressBar.value = (remaining_time / order_initial_time) * 100
-		
+	
+	elif(remaining_time <= 0):
+		get_parent().get_parent().add_money(-Global.money_lost_per_order)
+		delete_order()
 
 func _enter_tree():
 	$MealSprite.texture = Global.meals_info[asked_meal].texture

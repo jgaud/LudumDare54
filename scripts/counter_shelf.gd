@@ -21,7 +21,7 @@ func _on_child_entered_tree(node):
 			tween.tween_property(node.get_node("Sprite2D"), "position", Vector2.UP * 25, Global.tween_speed).as_relative().from_current()
 			tween2.tween_property(node.get_node("Sprite2D"), "modulate:a", 0, Global.tween_speed)
 			tween.connect("finished", _on_tween_meal_finished)
-			get_parent().get_parent().add_money(Global.money_per_order * corresponding_order.remaining_time)
+			get_parent().get_parent().add_money(Global.money_gained_per_order * corresponding_order.remaining_time)
 			
 			corresponding_order.delete_order()
 
