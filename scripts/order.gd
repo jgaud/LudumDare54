@@ -10,18 +10,18 @@ func _on_order_timer_timeout():
 		$TextureProgressBar.value = (remaining_time / order_initial_time) * 100
 	
 	elif(remaining_time <= 0):
-		get_parent().get_parent().add_money(-Global.money_lost_per_order)
-		delete_order()
+		delete_order(-Global.money_lost_per_order)
 
 func _enter_tree():
 	$MealSprite.texture = Global.meals_info[asked_meal].texture
 
-func delete_order():
+func delete_order(amount):
 	var tween3 = get_tree().create_tween()
 	var tween4 = get_tree().create_tween()
 	tween3.tween_property(self, "modulate:a", 0, Global.tween_speed)
 	tween4.tween_property(self, "position", Vector2.UP * 100, Global.tween_speed).as_relative().from_current()
 	tween3.connect("finished", _on_tween_order_finished)
+	get_parent().get_parent().add_money(amount)
 	
 func _on_tween_order_finished():
 	var parent = get_parent()

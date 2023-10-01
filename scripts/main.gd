@@ -12,13 +12,21 @@ func _ready():
 	add_meal($Fridge/FridgeShelf, Meal.MealType.PIZZA)
 	add_meal($Fridge/FridgeShelf2, Meal.MealType.PIZZA, 0, 0)
 	
-	add_order(Meal.MealType.PIZZA, 30)
+	add_order(Meal.MealType.PIZZA, 60)
 	for i in range(Global.starting_number_orders):
 		add_order()
 
 func add_money(amount):
 	money += amount
 	%Money.text = str(money) + "$"
+	check_game_over()
+	
+func check_game_over():
+	if(money < 0):
+		get_tree().paused = true
+		%EndGame.get_node("%ScoreLabel").visible = false
+		#%EndGame.get_node("%ScoreLabel").text = "Score: " + str(money)
+		%EndGame.visible = true
 	
 func add_meal(shelf, meal_type=null, time=null, temp=null):	
 	var random = RandomNumberGenerator.new()
@@ -30,7 +38,6 @@ func add_meal(shelf, meal_type=null, time=null, temp=null):
 	
 	if(time == null):
 		time = randi_range(round(Global.meals_info[meal_type].time_min), round(Global.meals_info[meal_type].time_max))
-		print(time)
 	if(temp == null):
 		temp = (random.randi_range(round(Global.meals_info[meal_type].temp_min/50), round(Global.meals_info[meal_type].temp_max/50))) * 50
 		
@@ -62,7 +69,7 @@ func add_order(meal_type=null, time=null):
 
 func compute_orders_pos(node=null):
 	for order in %OrdersContainer.get_children():
-		if(get_tree() != null):
+		if(self.is_inside_tree()):
 			var pos = Vector2((order.get_index() * 80) + 2, 0)
 			var tween = get_tree().create_tween()
 			tween.tween_property(order, "global_position", pos, 1).set_trans(Tween.TRANS_SPRING)
